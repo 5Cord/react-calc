@@ -58,6 +58,20 @@ class Calculator extends Component {
       <div className="MainContainer">
         <div className={`calculator ${darkModeClass}`}>
           <div className="inputLine">
+            <>
+              <input
+                onClick={this.toggleDarkMode}
+                className="react-switch-checkbox"
+                id={`react-switch-new`}
+                type="checkbox"
+              />
+              <label
+                className="react-switch-label"
+                htmlFor={`react-switch-new`}
+              >
+                <span className={`react-switch-button`} />
+              </label>
+            </>
             <input
               type="text"
               className={`input ${darkModeClass}`}
@@ -107,11 +121,8 @@ class Calculator extends Component {
 
             <button onClick={() => this.handleClick(".")}>.</button>
             <button onClick={() => this.handleClick("0")}>0</button>
-            <button onClick={() => this.handleClick("DE")}>--</button>
+            <button onClick={() => this.handleClick("DE")}>←</button>
             <button onClick={() => this.handleClick("=")}>=</button>
-            <button className="toggle-dark-mode" onClick={this.toggleDarkMode}>
-              Dark mod
-            </button>
           </div>
         </div>
       </div>
