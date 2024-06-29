@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { evaluate } from "mathjs";
 import "./Button.css";
 
 class Calculator extends Component {
   state = {
     result: "",
     history: "",
+    isDarkMode: false,
   };
 
   handleClick = (value) => {
@@ -16,7 +18,7 @@ class Calculator extends Component {
 
     if (value === "=") {
       try {
-        const result = new Function(`return ${this.state.result}`)();
+        const result = evaluate(this.state.result);
         this.setState({
           result: result.toString(),
           history: `${this.state.result}`,
@@ -46,6 +48,7 @@ class Calculator extends Component {
       });
     }
   };
+
   toggleDarkMode = () => {
     this.setState((prevState) => ({
       isDarkMode: !prevState.isDarkMode,
@@ -65,10 +68,7 @@ class Calculator extends Component {
                 id={`react-switch-new`}
                 type="checkbox"
               />
-              <label
-                className="react-switch-label"
-                htmlFor={`react-switch-new`}
-              >
+              <label className="react-switch-label" htmlFor={`react-switch-new`}>
                 <span className={`react-switch-button`} />
               </label>
             </>
